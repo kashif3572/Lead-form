@@ -914,8 +914,8 @@
         }
 
         function validatePhone(phone) {
-            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
-            return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+        const phoneRegex = /^[\+]?[0-9][\d]{0,15}$/; // allow leading 0 or +
+        return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
         }
 
         // Show error message
