@@ -1054,45 +1054,65 @@
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwVc0BprjMn6U-dIKdJt26H3NgSVld5U3A5Cjw1jqAAG0sOzVWGy7yKfnS7Q3VtzWlq6Q/exec';
         
         async function submitToGoogleSheets(data) {
-            // Get current date in proper format for Pakistan
-            const now = new Date();
-            const timestamp = now.toLocaleString('en-PK', { 
-                timeZone: 'Asia/Karachi',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: false
-            });
-            
-            // Prepare data for Google Sheets
-            const sheetData = {
-                name: data.name,
-                email: data.email,
-                phone: data.phone,
-                interest: data.interest || 'Not specified',
-                message: data.message || 'No message',
-                lead_source: data.lead_source,
-                submission_time: data.submission_time, // This is just the time
-                timestamp: timestamp // This is full date + time
-            };
-            
-            console.log('Submitting to Google Sheets:', sheetData);
-            
-            // Send data to Google Apps Script
-            const response = await fetch(GOOGLE_SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(sheetData)
-            });
-            
-            console.log('Data submitted to Google Sheets:', sheetData);
+    // Get current date in proper format for Pakistan
+    const now = new Date();
+    const timestamp = now.toLocaleString('en-PK', { 
+        timeZone: 'Asia/Karachi',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    });
+    
+    // Prepare data for Google Sheets
+    const sheetData = {
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        interest: data.interest || 'Not specified',
+        message: data.message || 'No message',
+        lead_source: data.lead_source,
+        submission_time: data.submission_time, // TIME ONLY
+        timestamp: timestamp // FULL DATE + TIME
+    };
+    
+    console.log('Submitting to Google Sheets:', sheetData);
+    
+    // 1️⃣ Send data to Google Apps Script
+    await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sheetData)
+    });
+    
+    console.log('Data submitted to Google Sheets:', sheetData);
+
+    // 2️⃣ Send data to n8n webhook
+    const N8N_WEBHOOK_URL = 'https://ayyan1122.app.n8n.cloud/webhook/newlead';
+    
+    try {
+        const webhookResponse = await fetch(N8N_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(sheetData)
+        });
+
+        if (webhookResponse.ok) {
+            console.log('Data successfully sent to n8n webhook');
+        } else {
+            console.error('Error sending data to n8n webhook:', webhookResponse.statusText);
         }
+    } catch (err) {
+        console.error('Error sending data to n8n webhook:', err);
+    }
+}
+
     </script>
 </body>
 </html>
