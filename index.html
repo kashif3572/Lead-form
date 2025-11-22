@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Our Menu | Premium Catering Services</title>
+    <meta name="description" content="Request our menu and get a free quote for your next event. Professional catering with premium ingredients.">
+    <style>
+        /* WhatsApp Popup Styles */
+        .whatsapp-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .whatsapp-popup-content {
+            background: white;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .whatsapp-popup h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .whatsapp-popup p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+
+        .whatsapp-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .whatsapp-option-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .whatsapp-option-btn:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-option-btn.secondary {
+            background: var(--gray-light);
+            color: var(--dark);
+        }
+
+        .whatsapp-option-btn.secondary:hover {
+            background: #d1d5db;
+        }
+
+        .close-popup {
+            background: none;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            font-size: 1.2rem;
+            position: absolute;
+            top: 10px;
+            right: 15px;
+        }
+
+        /* Rest of the CSS remains exactly the same as before */
+        :root {
+            --primary: #2c5aa0;
+            --primary-dark: #1e3d72;
+            --secondary: #f8a01d;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --error: #dc3545;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #e6910a;
+            transform: translateY(-2px);
+        }
+
+        .cta-button:disabled {
+            background-color: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .lead-form-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(44, 90, 160, 0.2);
+        }
+
+        .error-message {
+            color: var(--error);
+            font-size: 0.875rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .whatsapp-option {
+            display: flex;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-light);
+        }
+
+        .whatsapp-icon {
+            color: #25D366;
+            font-size: 1.5rem;
+            margin-right: 10px;
+        }
+
+        .whatsapp-text {
+            flex: 1;
+        }
+
+        .whatsapp-button {
+            background-color: #25D366;
+            color: white;
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+        }
+
+        .trust-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .trust-items {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .trust-item {
+            text-align: center;
+            max-width: 250px;
+            margin: 20px;
+        }
+
+        .trust-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .trust-item h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+
+        .testimonials {
+            margin-top: 60px;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background-color: var(--light);
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--gray-light);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            margin-right: 10px;
+            color: var(--secondary);
+        }
+
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: var(--transition);
+            text-decoration: none;
+            color: white;
+        }
+
+        .social-link:hover {
+            background-color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        .success-message {
+            display: none;
+            background-color: var(--success);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .error-message-global {
+            display: none;
+            background-color: var(--error);
+            color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--primary);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+
+            nav ul li {
+                margin: 0;
+                text-align: center;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 10px 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .form-container {
+                padding: 25px;
+            }
+
+            .trust-items {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .lead-form-section, .trust-section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                fontSize: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- WhatsApp Popup -->
+    <div class="whatsapp-popup" id="whatsappPopup">
+        <div class="whatsapp-popup-content">
+            <button class="close-popup" id="closePopup">&times;</button>
+            <h3>Contact Us on WhatsApp</h3>
+            <p>Choose how you'd like to connect with us:</p>
+            <div class="whatsapp-options">
+                <a href="#" class="whatsapp-option-btn" id="quickMessageBtn">
+                    📱 Quick "Hi, I'm interested"
+                </a>
+                <a href="#" class="whatsapp-option-btn secondary" id="customMessageBtn">
+                    ✏️ Type my own message
+                </a>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--gray);">
+                We typically respond within 15 minutes during business hours
+            </p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Cater<span>Pro</span></a>
+            <button class="mobile-menu-btn">☰</button>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Menu</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1>Premium Catering for Your Special Events</h1>
+            <p>From corporate gatherings to weddings, we deliver exceptional culinary experiences with fresh, locally-sourced ingredients.</p>
+            <a href="#lead-form" class="cta-button">Get Our Menu</a>
+        </div>
+    </section>
+
+    <!-- Lead Form Section -->
+    <section class="lead-form-section" id="lead-form">
+        <div class="container">
+            <div class="section-title">
+                <h2>Request Our Menu & Get a Quote</h2>
+                <p>Fill out the form below and we'll send you our full menu with pricing options tailored to your event.</p>
+            </div>
+            <div class="form-container">
+                <div class="success-message" id="successMessage">
+                    <strong>Thank you!</strong> Your request has been submitted successfully. We'll contact you shortly.
+                </div>
+                <div class="error-message-global" id="errorMessage">
+                    <strong>Error!</strong> There was a problem submitting your request. Please try again or contact us directly.
+                </div>
+                <form id="leadForm">
+                    <input type="hidden" id="leadSource" name="lead_source" value="website">
+                    <input type="hidden" id="submissionTime" name="submission_time">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" class="form-control" required>
+                        <div class="error-message" id="nameError">Please enter your full name</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" class="form-control" required>
+                        <div class="error-message" id="emailError">Please enter a valid email address</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" class="form-control" required>
+                        <div class="error-message" id="phoneError">Please enter a valid phone number</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">Event Type</label>
+                        <select id="interest" name="interest" class="form-control">
+                            <option value="">Select an option</option>
+                            <option value="Corporate Event">Corporate Event</option>
+                            <option value="Wedding">Wedding</option>
+                            <option value="Birthday Party">Birthday Party</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Additional Details</label>
+                        <textarea id="message" name="message" class="form-control" rows="4" placeholder="Tell us about your event..."></textarea>
+                    </div>
+                    <div class="loading-spinner" id="loadingSpinner">
+                        <div class="spinner"></div>
+                        <p>Submitting your request...</p>
+                    </div>
+                    <button type="submit" class="cta-button" id="submitButton" style="width: 100%;">Send Request</button>
+                </form>
+                <div class="whatsapp-option">
+                    <div class="whatsapp-icon">📱</div>
+                    <div class="whatsapp-text">
+                        <p>Prefer to chat on WhatsApp?</p>
+                    </div>
+                    <button class="whatsapp-button" id="whatsappButton">Message Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose CaterPro</h2>
+                <p>Trusted by hundreds of clients for exceptional service and culinary excellence</p>
+            </div>
+            <div class="trust-items">
+                <div class="trust-item">
+                    <div class="trust-icon">⭐</div>
+                    <h3>5-Star Rated</h3>
+                    <p>Consistently rated excellent by our clients</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🍽️</div>
+                    <h3>Custom Menus</h3>
+                    <p>Tailored to your preferences and dietary needs</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">🚚</div>
+                    <h3>On-Time Delivery</h3>
+                    <p>Always punctual with setup and service</p>
+                </div>
+                <div class="trust-item">
+                    <div class="trust-icon">💼</div>
+                    <h3>Professional Staff</h3>
+                    <p>Experienced and courteous service team</p>
+                </div>
+            </div>
+            <div class="testimonials">
+                <div class="section-title">
+                    <h2>What Our Clients Say</h2>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"CaterPro made our corporate event a huge success. The food was exceptional and the service was impeccable."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">JS</div>
+                            <div class="author-info">
+                                <h4>Jennifer Smith</h4>
+                                <p>Tech Solutions Inc.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Our wedding catering was beyond expectations. The team was professional and the food was delicious."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">MR</div>
+                            <div class="author-info">
+                                <h4>Michael & Rachel</h4>
+                                <p>Wedding Clients</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"I've used CaterPro for three corporate events now, and they consistently deliver quality and professionalism."</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">DK</div>
+                            <div class="author-info">
+                                <h4>David Kim</h4>
+                                <p>Marketing Director</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>CaterPro</h3>
+                    <p>Premium catering services for all your special events. We create memorable culinary experiences with fresh, locally-sourced ingredients.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">ig</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Menu</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <span class="contact-icon">📍</span>
+                            <span>123 Culinary Ave, Food City, FC 12345</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">📞</span>
+                            <span>(555) 123-4567</span>
+                        </li>
+                        <li>
+                            <span class="contact-icon">✉️</span>
+                            <span>info@caterpro.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CaterPro. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+
+        // WhatsApp Integration - FIXED FOR ALL DEVICES
+        const whatsappPopup = document.getElementById('whatsappPopup');
+        const whatsappButton = document.getElementById('whatsappButton');
+        const closePopup = document.getElementById('closePopup');
+        const quickMessageBtn = document.getElementById('quickMessageBtn');
+        const customMessageBtn = document.getElementById('customMessageBtn');
+
+        // FIXED: WhatsApp number for Pakistan
+        const WHATSAPP_NUMBER = '923406543866'; // Format: 92 + number without 0
+
+        // Function to detect mobile devices
+        function isMobileDevice() {
+            return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        }
+
+        // Open WhatsApp popup
+        whatsappButton.addEventListener('click', function() {
+            whatsappPopup.style.display = 'flex';
+        });
+
+        // Close WhatsApp popup
+        closePopup.addEventListener('click', function() {
+            whatsappPopup.style.display = 'none';
+        });
+
+        // Close popup when clicking outside
+        whatsappPopup.addEventListener('click', function(e) {
+            if (e.target === whatsappPopup) {
+                whatsappPopup.style.display = 'none';
+            }
+        });
+
+        // Quick message option - FIXED: Works on both mobile and desktop
+        quickMessageBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const message = encodeURIComponent("Hi CaterPro, I'd like to request your menu and get a quote for my event.");
+            
+            // Use appropriate WhatsApp URL based on device
+            const whatsappUrl = isMobileDevice() ? 
+                `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${message}` :
+                `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${message}`;
+            
+            window.open(whatsappUrl, '_blank');
+            whatsappPopup.style.display = 'none';
+            trackWhatsAppConversion('quick_message');
+        });
+
+        // Custom message option - FIXED: Works on both mobile and desktop
+        customMessageBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            const message = encodeURIComponent("Hi CaterPro, ");
+            
+            // Use appropriate WhatsApp URL based on device
+            const whatsappUrl = isMobileDevice() ? 
+                `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${message}` :
+                `https://web.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${message}`;
+            
+            window.open(whatsappUrl, '_blank');
+            whatsappPopup.style.display = 'none';
+            trackWhatsAppConversion('custom_message');
+        });
+
+        // Track WhatsApp conversion for analytics
+        function trackWhatsAppConversion(type) {
+            // For Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'whatsapp_click', {
+                    'event_category': 'conversion',
+                    'event_label': type,
+                    'value': 1
+                });
+            }
+            
+            console.log('WhatsApp conversion tracked:', type);
+        }
+
+        // Form validation functions
+        function validateName(name) {
+            return name.trim().length >= 2;
+        }
+
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        function validatePhone(phone) {
+            const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
+            return phoneRegex.test(phone.replace(/[\s\-\(\)]/g, ''));
+        }
+
+        // Show error message
+        function showError(fieldId, message) {
+            const errorElement = document.getElementById(fieldId + 'Error');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            document.getElementById(fieldId).classList.add('error');
+        }
+
+        // Hide error message
+        function hideError(fieldId) {
+            const errorElement = document.getElementById(fieldId + 'Error');
+            errorElement.style.display = 'none';
+            document.getElementById(fieldId).classList.remove('error');
+        }
+
+        // Track lead source from URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            const results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Form submission handling - FIXED: Submission time for Pakistan
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Reset previous errors
+            hideError('name');
+            hideError('email');
+            hideError('phone');
+            document.getElementById('errorMessage').style.display = 'none';
+            
+            // Validate form
+            let isValid = true;
+            
+            if (!validateName(data.name)) {
+                showError('name', 'Please enter your full name (at least 2 characters)');
+                isValid = false;
+            }
+            
+            if (!validateEmail(data.email)) {
+                showError('email', 'Please enter a valid email address');
+                isValid = false;
+            }
+            
+            if (!validatePhone(data.phone)) {
+                showError('phone', 'Please enter a valid phone number');
+                isValid = false;
+            }
+            
+            if (!isValid) {
+                return;
+            }
+            
+            // FIXED: Add timestamp in correct format for Pakistan (TIME ONLY)
+            const now = new Date();
+            const timeOptions = { 
+                timeZone: 'Asia/Karachi',
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            const pakistanTime = now.toLocaleTimeString('en-PK', timeOptions);
+            
+            // Set the submission time in the hidden field
+            document.getElementById('submissionTime').value = pakistanTime;
+            
+            // Show loading state
+            document.getElementById('loadingSpinner').style.display = 'block';
+            document.getElementById('submitButton').disabled = true;
+            
+            try {
+                // Submit to Google Sheets
+                await submitToGoogleSheets(data);
+                
+                // Show success message
+                document.getElementById('successMessage').style.display = 'block';
+                
+                // Reset form
+                this.reset();
+                
+                // Scroll to success message
+                document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                document.getElementById('errorMessage').style.display = 'block';
+                document.getElementById('errorMessage').scrollIntoView({ behavior: 'smooth' });
+            } finally {
+                // Hide loading state
+                document.getElementById('loadingSpinner').style.display = 'none';
+                document.getElementById('submitButton').disabled = false;
+            }
+        });
+
+        // Real-time validation
+        document.getElementById('name').addEventListener('blur', function() {
+            if (!validateName(this.value)) {
+                showError('name', 'Please enter your full name (at least 2 characters)');
+            } else {
+                hideError('name');
+            }
+        });
+
+        document.getElementById('email').addEventListener('blur', function() {
+            if (!validateEmail(this.value)) {
+                showError('email', 'Please enter a valid email address');
+            } else {
+                hideError('email');
+            }
+        });
+
+        document.getElementById('phone').addEventListener('blur', function() {
+            if (!validatePhone(this.value)) {
+                showError('phone', 'Please enter a valid phone number');
+            } else {
+                hideError('phone');
+            }
+        });
+
+        // Set lead source based on URL parameter or default to 'website'
+        document.addEventListener('DOMContentLoaded', function() {
+            const leadSource = getUrlParameter('source') || 'website';
+            document.getElementById('leadSource').value = leadSource;
+        });
+
+        // GOOGLE SHEETS INTEGRATION - FIXED TIMESTAMP FOR PAKISTAN
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwVc0BprjMn6U-dIKdJt26H3NgSVld5U3A5Cjw1jqAAG0sOzVWGy7yKfnS7Q3VtzWlq6Q/exec';
+        
+        async function submitToGoogleSheets(data) {
+            // Get current date in proper format for Pakistan
+            const now = new Date();
+            const timestamp = now.toLocaleString('en-PK', { 
+                timeZone: 'Asia/Karachi',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            
+            // Prepare data for Google Sheets
+            const sheetData = {
+                name: data.name,
+                email: data.email,
+                phone: data.phone,
+                interest: data.interest || 'Not specified',
+                message: data.message || 'No message',
+                lead_source: data.lead_source,
+                submission_time: data.submission_time, // This is just the time
+                timestamp: timestamp // This is full date + time
+            };
+            
+            console.log('Submitting to Google Sheets:', sheetData);
+            
+            // Send data to Google Apps Script
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(sheetData)
+            });
+            
+            console.log('Data submitted to Google Sheets:', sheetData);
+        }
+    </script>
+</body>
+</html>
